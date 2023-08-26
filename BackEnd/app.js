@@ -1,3 +1,3 @@
-const { init_db } = require("./databases/mongo_init");
+const mongo = require("mongoose");
 
-init_db();
+
