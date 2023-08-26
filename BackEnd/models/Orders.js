@@ -11,4 +11,5 @@ ordersSchema = new mongo.Schema({
   ],
 });
 
-exports.ordersSchema = ordersSchema;
+const orders = mongo.model("orders", ordersSchema);
+exports.ordersModel = orders;

@@ -8,5 +8,6 @@ itemSchema = new mongo.Schema({
   photoUrl: { type: String },
   categories: [{ type: mongo.Schema.Types.ObjectId, ref: "categories" }],
 });
+const items = mongo.model("items", itemSchema);
 
-exports.itemSchema = itemSchema;
+exports.itemModel = items;

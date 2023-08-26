@@ -1,8 +1,8 @@
 const mongo = require("mongoose");
-const { categoriesSchema } = require("../models/Categories");
-const { itemSchema } = require("../models/items");
-const { ordersSchema } = require("../models/Orders");
-const { userSchema } = require("../models/Users");
+const { categoriesModel } = require("../models/Categories");
+const { itemModel } = require("../models/items");
+const { ordersModel } = require("../models/Orders");
+const { userModel } = require("../models/Users");
 
 function init_db() {
   mongo
@@ -23,26 +23,21 @@ function init_db() {
     db.collection("users").drop();
   });
 
-  const categories = mongo.model("categories", categoriesSchema);
-  const orders = mongo.model("orders", ordersSchema);
-  const items = mongo.model("items", itemSchema);
-  const users = mongo.model("users", userSchema);
+  const Categories = new categoriesModel({ name: "Continental" });
 
-  const Categories = new categories({ name: "Continental" });
-
-  const item = new items({
+  const item = new itemModel({
     title: "Biryani",
     description: "Sindhi Biryani",
     price: 123,
     categories: [Categories?._id],
   });
 
-  const Orders = new orders({
+  const Orders = new ordersModel({
     status: false,
     items: [{ itemId: item._id, quantity: 5 }],
   });
 
-  const Users = new users({
+  const Users = new userModel({
     fullName: "Muhammad Musa Zulfiqar",
     email: "mz@hotmail.com",
     orders: [Orders._id],

@@ -7,4 +7,6 @@ userSchema = new mongo.Schema({
   orders: [{ type: mongo.Schema.Types.ObjectId, ref: "orders" }],
 });
 
-exports.userSchema = userSchema;
+const users = mongo.model("users", userSchema);
+
+exports.userModel = users;
