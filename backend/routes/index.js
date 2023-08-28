@@ -1,12 +1,11 @@
-const express = require("express");
-const passport = require("passport");
-const jwt = require("jsonwebtoken");
-const { categoriesRouter } = require("./categoriesRoutes");
-const { itemsRouter } = require("./itemRoutes");
-const { authRouter } = require("./authRoutes");
-const { secureRoutes } = require("./secureRoutes");
+import express from "express";
+import passport from "passport";
+import categoriesRouter from "./categoriesRoutes.js";
+import itemsRouter from "./itemRoutes.js";
+import authRouter from "./authRoutes.js";
+import userRouter from "./userRoutes.js";
+import "../controllers/Auth.js";
 const router = express.Router();
-require("../controllers/Auth");
 
 router.use("/categories", categoriesRouter);
 router.use("/items", itemsRouter);
@@ -14,9 +13,9 @@ router.use("/items", itemsRouter);
 router.use(
   "/user",
   passport.authenticate("jwt", { session: false }),
-  secureRoutes
+  userRouter
 );
 
 router.use("/", authRouter);
 
-exports.router = router;
+export default router;

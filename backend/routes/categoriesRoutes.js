@@ -1,9 +1,10 @@
-const express = require("express");
-const mongo = require("mongoose");
-const { categoriesModel } = require("../models/Categories");
+import express from "express";
+import mongoose from "mongoose";
+import categoriesModel from "../models/Categories.js";
 
-const router = express.Router();
+const categoriesRouter = express.Router();
 
+const mongo = mongoose;
 mongo
   .connect("mongodb://127.0.0.1:27017/dinnerDash")
   .then(() => {
@@ -13,7 +14,7 @@ mongo
     console.log("Connection Failed", err);
   });
 
-router.get("/get-all", (req, res) => {
+categoriesRouter.get("/get-all", (req, res) => {
   categoriesModel
     .find({})
     .select({ name: 1 })
@@ -27,7 +28,7 @@ router.get("/get-all", (req, res) => {
     });
 });
 
-router.post("/add-category", (req, res) => {
+categoriesRouter.post("/add-category", (req, res) => {
   const Categories = new categoriesModel({ name: req.body.name });
   Categories.save()
     .then(() => {
@@ -39,4 +40,4 @@ router.post("/add-category", (req, res) => {
     });
 });
 
-exports.categoriesRouter = router;
+export default categoriesRouter;

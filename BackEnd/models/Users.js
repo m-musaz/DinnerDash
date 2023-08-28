@@ -1,7 +1,8 @@
-const mongo = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-userSchema = new mongo.Schema({
+const mongo = mongoose;
+const userSchema = new mongo.Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true },
   displayName: String,
@@ -23,6 +24,6 @@ userSchema.methods.isPasswordValid = async function (password) {
   return compare;
 };
 
-const users = mongo.model("users", userSchema);
+const usersModel = mongo.model("users", userSchema);
 
-exports.userModel = users;
+export default usersModel;

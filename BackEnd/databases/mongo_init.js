@@ -1,8 +1,5 @@
-const mongo = require("mongoose");
-const { categoriesModel } = require("../models/Categories");
-const { itemModel } = require("../models/items");
-const { ordersModel } = require("../models/Orders");
-const { userModel } = require("../models/Users");
+import mongoose from "mongoose";
+const mongo = mongoose;
 
 function init_db() {
   mongo

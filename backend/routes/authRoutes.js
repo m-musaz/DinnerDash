@@ -1,10 +1,12 @@
-const passport = require("passport");
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const router = express.Router();
-require("../controllers/Auth");
+import passport from "passport";
+import express from "express";
+import jwt from "jsonwebtoken";
 
-router.post(
+const authRouter = express.Router();
+
+import "../controllers/Auth.js";
+
+authRouter.post(
   "/signup",
   passport.authenticate("signup", { session: false }),
   async (req, res, next) => {
@@ -15,7 +17,7 @@ router.post(
   }
 );
 
-router.post("/login", async (req, res, next) => {
+authRouter.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
@@ -39,4 +41,4 @@ router.post("/login", async (req, res, next) => {
   })(req, res, next);
 });
 
-exports.authRouter = router;
+export default authRouter;
