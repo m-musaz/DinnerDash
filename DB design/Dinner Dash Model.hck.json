@@ -377,6 +377,16 @@
                     "additionalItems": true,
                     "GUID": "94b33c28-f3e0-4171-bd28-98d5794b5c23",
                     "error": {}
+                },
+                {
+                    "name": "role",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "865f25aa-49e7-4291-8ff2-d346e7a284e3",
+                    "default": "user",
+                    "required": true,
+                    "error": {}
                 }
             ],
             "definitions": {
@@ -1028,7 +1038,8 @@
         "3f156bf9-33a6-4279-a18b-101b02477972": "Categories",
         "f96826a0-13ef-4c8b-bde1-162666bb871b": "name",
         "3e32a570-1ab4-4275-91ca-f35307d3ecef": "_id",
-        "e19cff46-efd3-4fa0-a3ed-3e34102bff3b": "fk Items(1).categories.[0] to Categories._id"
+        "e19cff46-efd3-4fa0-a3ed-3e34102bff3b": "fk Items(1).categories.[0] to Categories._id",
+        "865f25aa-49e7-4291-8ff2-d346e7a284e3": "role"
     },
     "definitions": {
         "type": "definitions",
@@ -1053,7 +1064,7 @@
     "creationTS": "2023-08-23T17:08:51.063Z",
     "GUID": "ff7bea0e-355c-4638-8d6b-330cf0955a61",
     "isLineageEnabled": false,
-    "lastModifTS": "2023-08-25T02:05:08.920Z",
+    "lastModifTS": "2023-08-28T00:04:45.826Z",
     "persistenceSchemaVersion": "6",
     "isCreatedByPlugin": true,
     "pluginInformation": {
@@ -1136,7 +1147,8 @@
                 ],
                 "collapsedNodes": [
                     "e3ca68b1-dd1b-4d95-9afc-631ab71cdb6d679ac609-2a35-42a7-98c6-136950c2bd8d",
-                    "c5cd7a53-7094-4e6d-be6d-9de6f0ea0632fba49b31-1584-4510-ac93-8154ba333f02"
+                    "c5cd7a53-7094-4e6d-be6d-9de6f0ea0632fba49b31-1584-4510-ac93-8154ba333f02",
+                    "a414db48-9aa4-40d1-bf5e-0fa3ffb8f38594b33c28-f3e0-4171-bd28-98d5794b5c23"
                 ],
                 "activeRelationship": "",
                 "activeRelationshipFields": {
