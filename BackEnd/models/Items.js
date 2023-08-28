@@ -1,13 +1,14 @@
-const { Decimal128 } = require("bson");
-const mongo = require("mongoose");
+import mongoose from "mongoose";
+const mongo = mongoose;
 
-itemSchema = new mongo.Schema({
+const itemSchema = new mongo.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  price: { type: Decimal128 },
+  price: { type: mongo.Schema.Types.Decimal128 },
   photoUrl: { type: String },
   categories: [{ type: mongo.Schema.Types.ObjectId, ref: "categories" }],
+  active: { type: Boolean, default: true },
 });
-const items = mongo.model("items", itemSchema);
+const itemModel = mongo.model("items", itemSchema);
 
-exports.itemModel = items;
+export default itemModel;

@@ -1,12 +1,29 @@
-const mongo = require("mongoose");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-userSchema = new mongo.Schema({
+const mongo = mongoose;
+const userSchema = new mongo.Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true },
   displayName: String,
+  password: { type: String, required: true },
   orders: [{ type: mongo.Schema.Types.ObjectId, ref: "orders" }],
+  role: { type: String, default: "User" },
 });
 
-const users = mongo.model("users", userSchema);
+userSchema.pre("save", async function (next) {
+  const hash = await bcrypt.hash(this.password, 5);
+  this.password = hash;
 
-exports.userModel = users;
+  next();
+});
+
+userSchema.methods.isPasswordValid = async function (password) {
+  const compare = await bcrypt.compare(password, this.password);
+
+  return compare;
+};
+
+const usersModel = mongo.model("users", userSchema);
+
+export default usersModel;

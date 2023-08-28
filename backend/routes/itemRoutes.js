@@ -1,8 +1,9 @@
-const express = require("express");
-const mongo = require("mongoose");
-const { itemModel } = require("../models/items");
+import express from "express";
+import mongoose from "mongoose";
+import itemModel from "../models/Items.js";
 
-const router = express.Router();
+const mongo = mongoose;
+const itemsRouter = express.Router();
 
 mongo
   .connect("mongodb://127.0.0.1:27017/dinnerDash")
@@ -13,7 +14,7 @@ mongo
     console.log("Connection Failed", err);
   });
 
-router.get("/get-all", (req, res) => {
+itemsRouter.get("/get-all", (req, res) => {
   itemModel
     .find({})
     .then((result) => {
@@ -26,7 +27,7 @@ router.get("/get-all", (req, res) => {
     });
 });
 
-router.get("/category-items", (req, res) => {
+itemsRouter.get("/category-items", (req, res) => {
   const reqCategories = req.body;
   itemModel
     .find({ categories: { $all: reqCategories } })
@@ -39,4 +40,4 @@ router.get("/category-items", (req, res) => {
     });
 });
 
-exports.itemsRouter = router;
+export default itemsRouter;

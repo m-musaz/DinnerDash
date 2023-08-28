@@ -1,8 +1,9 @@
-const mongo = require("mongoose");
+import mongoose from "mongoose";
+const mongo = mongoose;
 
-categoriesSchema = new mongo.Schema({
+const categoriesSchema = new mongo.Schema({
   name: { type: String, required: true },
 });
-const categories = mongo.model("categories", categoriesSchema);
+const categoriesModel = mongo.model("categories", categoriesSchema);
 
-exports.categoriesModel = categories;
+export default categoriesModel;
